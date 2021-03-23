@@ -1,4 +1,4 @@
-/*
+
 import Banner from "./Banner.vue";
 
 export default {
@@ -7,4 +7,3 @@ export default {
 		Vue.component("banner",Banner);			
 	}
 };
-*/
