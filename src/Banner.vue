@@ -324,7 +324,7 @@ export default {
 								}								
 							//imágenes
 							}else{
-								if(options.images[i-1].length>0){
+								if(options.images && options.images[i-1].length>0){
 									let testArray=this.testStringArray(options.images[i-1]);									
 									if(!testArray){
 										console.log("options.texts debe ser un array de tipo cadena");
@@ -333,6 +333,8 @@ export default {
 									if(opEffects[i].widthHTML)
 										banner[i].widthHTML=opEffects[i].widthHTML;
 									conf.imagesBanner[i-1]=options.images[i-1];
+								}else{
+									console.log("no se han detectado imágenes, se establecen la imágenes de prueba")
 								}
 							}
 						}
