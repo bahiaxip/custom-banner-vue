@@ -203,7 +203,6 @@ export default {
 		this.main[main.tmpString]=this.tmpBhBanner;
 		
 		if(this.options){
-
 			this.testOrientationAndNodes(this.options,this.main[main.confString],this.main[main.bannerString]);			
 			this.setOrderAnimations(this.options,this.main[main.confString]);
 			this.setEffects(this.options,this.main[main.bannerString]);
