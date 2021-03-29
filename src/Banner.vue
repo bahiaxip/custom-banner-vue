@@ -32,29 +32,30 @@ export default {
 				size:null,
 				order:{
 		
-					0:[1,],
+					0:[1],
 					//0:[{state:true,type:},{},{}]
-					1:[2],
-					2:[3],
+					1:[3],
+					2:[1,3],					
 					3:[1,2,3],
-					4:[1,2,3]
+					4:[2]
 				},
 				imagesBanner:[
 					//images element 1
 					[
-						"img/redondear_oso_polar.png",
-						"img/coche.jpg",
+						"https://cdn.pixabay.com/photo/2017/02/20/17/47/icon-2083456_960_720.png",
+						"https://cdn.pixabay.com/photo/2013/07/13/10/11/qr-code-156717_960_720.png"
+
 					],
 					//images element 2
 					[
-						"img/Globe.png",
-						"img/palets.png"
+						"https://cdn.pixabay.com/photo/2017/11/15/06/31/black-2951013_960_720.png",
+						"https://cdn.pixabay.com/photo/2016/03/22/04/23/map-1272165_960_720.png"
 					],
 					//images element 3
 					[
-						"img/forest.jpg",
-						"img/children.jpg",
-						"img/selfie.jpg"
+						"https://cdn.pixabay.com/photo/2019/06/27/13/10/selfie-4302321_960_720.jpg",
+						"https://cdn.pixabay.com/photo/2015/08/13/19/39/children-887393_960_720.jpg",
+						"https://cdn.pixabay.com/photo/2020/07/16/21/10/asian-5412358_960_720.jpg"
 					]
 				],
 				textsBanner:[
@@ -72,8 +73,8 @@ export default {
 					],
 					//texts element 3
 					[
-						"Comprime tu imagen",
-						"Crea tu propia marca de agua"
+						"Descuentos de hasta el 50%",
+						"Envíos gratis desde 25€"
 					]
 				],
 			},
@@ -84,11 +85,11 @@ export default {
 					opacity:false,					
 					trans:{						
 						width:false,
-						height:true,						
+						height:false,						
 						fontSize:false,
 						positionLeft:false,
 						positionTop:false,						
-						scaleRotate:false,			
+						scaleRotate:true,			
 					},					
 					fontSizeStyle:null,
 					modeText:false,
@@ -650,6 +651,7 @@ export default {
     letter-spacing: 1px;
     position:relative;
     transition:all 0.6s linear;
+    font-family:nikaia;
 }
 .img_banner{
 	max-width:100%;
@@ -661,5 +663,9 @@ export default {
 .text1{
     font-family:nikaia;
     font-size:18px;
+}
+@font-face{
+	font-family:nikaia;
+	src:url(./assets/fonts/Nikaia_Medium.ttf);
 }
 </style>

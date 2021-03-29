@@ -1,11 +1,22 @@
 {
-  "name": "custom-banner",
-  "version": "0.0.2",
+  "private": false,
+  "name": "custom-banner-vue",
+  "version": "0.0.94",
   "description": "Easy customizable banner for Vue",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Xip",
-  "license": "MIT"
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "vue serve Banner.vue",
+    "build": "bili "
+  },
+  "files": [
+    "dist/*"    
+  ],
+  "devDependencies": {
+    "bili": "^5.0.5",
+    "rollup-plugin-vue": "^5.1.9",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "dependencies": {}
 }
