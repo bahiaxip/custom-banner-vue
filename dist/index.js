@@ -1,5 +1,5 @@
 /*!
- * custom-banner-vue v0.0.968
+ * custom-banner-vue v0.0.971
  * (c) Xip
  * Released under the MIT License.
  */
@@ -253,51 +253,52 @@ var script = {
       }
 
       if (options.images && options.images.length > 0 || options.texts && options.texts.length > 0) {
+        var opEffects;
+
         if (options.effects) {
-          var opEffects = options.effects;
+          opEffects = options.effects;
+        }
 
-          for (var i = 1; i < 4; i++) {
-            if (opEffects[i]) {
-              //textos
-              if (opEffects[i].modeText) {
-                banner[i].modeText = true;
+        for (var i = 1; i < 4; i++) {
+          if (opEffects && opEffects[i] && opEffects[i].modeText) {
+            //textos							
+            banner[i].modeText = true;
 
-                if (options.texts && options.texts[i - 1].length > 0) {
-                  var testArray = this.testStringArray(options.texts[i - 1]);
+            if (options.texts && options.texts[i - 1] && options.texts[i - 1].length > 0) {
+              var testArray = this.testStringArray(options.texts[i - 1]);
 
-                  if (!testArray) {
-                    console.log("options.texts debe ser un array de tipo cadena");
-                  }
-
-                  if (options.effects[i].fontSizeStyle) {
-                    var _font = options.effects[i].fontSizeStyle;
-
-                    if (typeof _font === "number") {
-                      _font = _font + "px";
-                    }
-
-                    banner[i].fontSizeStyle = _font;
-                  }
-
-                  conf.textsBanner[i - 1] = options.texts[i - 1];
-                } else {
-                  console.log("el modo texto está activado pero no se han asignado los textos");
-                } //imágenes
-
-              } else {
-                if (options.images && options.images[i - 1].length > 0) {
-                  var _testArray = this.testStringArray(options.images[i - 1]);
-
-                  if (!_testArray) {
-                    console.log("options.texts debe ser un array de tipo cadena");
-                  }
-
-                  if (opEffects[i].widthHTML) banner[i].widthHTML = opEffects[i].widthHTML;
-                  conf.imagesBanner[i - 1] = options.images[i - 1];
-                } else {
-                  console.log("no se han detectado imágenes, se establecen la imágenes de prueba");
-                }
+              if (!testArray) {
+                console.log("options.texts debe ser un array de tipo cadena");
               }
+
+              if (options.effects[i].fontSizeStyle) {
+                var _font = options.effects[i].fontSizeStyle;
+
+                if (typeof _font === "number") {
+                  _font = _font + "px";
+                }
+
+                banner[i].fontSizeStyle = _font;
+              } //se asignan textos del elemento
+
+
+              conf.textsBanner[i - 1] = options.texts[i - 1];
+            } else {
+              console.log("el modo texto está activado pero no se han detectado textos");
+            } //imágenes
+
+          } else {
+            if (options.images && options.images[i - 1] && options.images[i - 1].length > 0) {
+              var _testArray = this.testStringArray(options.images[i - 1]);
+
+              if (!_testArray) {
+                console.log("options.texts debe ser un array de tipo cadena");
+              }
+
+              if (opEffects && opEffects[i] && opEffects[i].widthHTML) banner[i].widthHTML = opEffects[i].widthHTML;
+              conf.imagesBanner[i - 1] = options.images[i - 1];
+            } else {
+              console.log("no se han detectado imágenes, se establecen la imágenes de prueba");
             }
           }
         }
@@ -438,7 +439,7 @@ var script = {
         list = tmp[num].list;
 
         if (type == "show") {
-          if (tmp[num].index == 0) tmp[num].index = 1;else if (list.length == tmp[num].index) tmp[num].index = 0;
+          if (tmp[num].index == 0 && list.length > 1) tmp[num].index = 1;else if (list.length == tmp[num].index) tmp[num].index = 0;
           tmp[num].selected = list[tmp[num].index];
           tmp[num].index = tmp[num].index + 1;
         }
@@ -678,8 +679,8 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-61de0a13_0", {
-    source: ".bh_banner{margin:10px auto;border-radius:20px;background-color:rgba(0,0,0,.8);color:#fff;padding:10px;position:relative;z-index:10;text-align:center;box-sizing:border-box}.bh_banner_vertical.medium{width:200px;min-height:550px}.bh_banner_vertical.min{width:150px;min-height:500px}.bh_banner_horizontal{display:inline-block}.bh_banner_horizontal.medium{min-width:800px;height:150px}.bh_banner_horizontal.min{min-width:650px;height:120px}.div_banner{overflow:hidden}.bh_banner_horizontal .div_banner{align-items:center!important;vertical-align:middle;display:inline-flex;margin:auto 10px}.bh_banner_horizontal .div_banner.medium{min-width:230px;height:130px}.bh_banner_horizontal .div_banner.min{min-width:150px;height:100px}.bh_banner_vertical .div_banner.medium{min-height:180px}.bh_banner_vertical .div_banner.min{min-height:130px}.bh_banner_vertical .div_banner{align-items:center!important;vertical-align:middle;display:inline-flex}.bh_banner_horizontal .text_banner{line-height:30px;margin:10px auto}.bh_banner_vertical .text_banner{line-height:40px}.text_banner{color:#fff;font-size:null;letter-spacing:1px;position:relative;transition:all .6s linear;font-family:nikaia}.img_banner{max-width:100%;max-height:100%;margin:auto;position:relative;transition:all .6s linear}.text1{font-family:nikaia;font-size:18px}@font-face{font-family:nikaia;src:url(assets/fonts/Nikaia_Medium.ttf)}",
+  inject("data-v-06f5ad69_0", {
+    source: ".bh_banner{margin:10px auto;border-radius:20px;background-color:rgba(0,0,0,.8);color:#fff;padding:10px;position:relative;z-index:10;text-align:center;box-sizing:border-box}.bh_banner_vertical.medium{width:200px;min-height:550px}.bh_banner_vertical.min{width:150px;min-height:450px}.bh_banner_horizontal{display:inline-block}.bh_banner_horizontal.medium{min-width:800px;height:150px}.bh_banner_horizontal.min{min-width:550px;height:120px}.div_banner{overflow:hidden}.bh_banner_horizontal .div_banner{align-items:center!important;vertical-align:middle;display:inline-flex;margin:auto 10px}.bh_banner_horizontal .div_banner.medium{min-width:230px;height:130px}.bh_banner_horizontal .div_banner.min{min-width:150px;height:100px}.bh_banner_vertical .div_banner.medium{min-height:180px}.bh_banner_vertical .div_banner.min{min-height:130px}.bh_banner_vertical .div_banner{align-items:center!important;vertical-align:middle;display:inline-flex}.bh_banner_horizontal .text_banner{line-height:30px;margin:10px auto}.bh_banner_vertical .text_banner{line-height:40px}.text_banner{color:#fff;font-size:null;letter-spacing:1px;position:relative;transition:all .6s linear}.img_banner{max-width:100%;max-height:100%;margin:auto;position:relative;transition:all .6s linear}.text1{font-size:18px}",
     map: undefined,
     media: undefined
   });

@@ -1,14 +1,14 @@
 {
   "private": false,
   "name": "custom-banner-vue",
-  "version": "0.0.968",
+  "version": "0.0.971",
   "description": "Easy customizable banner for Vue",
   "author": "Xip",
   "license": "MIT",
   "main": "./dist/index.js",
   "scripts": {
-    "dev": "vue serve Banner.vue",
-    "build": "bili "
+    "dev": "vue serve src/Banner.vue",
+    "build": "bili src/index.js --plugin.vue --bundle-node-modules --no-extract-css "
   },
   "files": [
     "dist/*"    

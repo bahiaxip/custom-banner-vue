@@ -264,7 +264,7 @@ export default {
 						})
 						
 						if(!resultOrders){
-							console.log("la configuración en order no es correcta");
+							console.warn("La configuración en order no es correcta");
 							break;
 						}						
 						order[i]=options.order[i];
@@ -278,7 +278,7 @@ export default {
 		testOrientationAndNodes(options,conf,banner){		
 			if(options.orientation){				
 				if(options.orientation !=="vertical" && options.orientation !=="horizontal"){
-					console.log("Error options.orientation: Solamente puede ser horizontal o vertical");
+					console.warn("Error orientation: horizontal o vertical");
 					return;
 				}				
 				conf.orientation=options.orientation				
@@ -311,7 +311,7 @@ export default {
 							
 							let testArray=this.testStringArray(options.texts[i-1]);
 							if(!testArray){
-								console.log("options.texts debe ser un array de tipo cadena");
+								console.warn("texts debe ser un array de tipo cadena");
 							}
 					
 							if(options.effects[i].fontSizeStyle){
@@ -324,24 +324,23 @@ export default {
 								//se asignan textos del elemento
 								conf.textsBanner[i-1]=options.texts[i-1];
 						}else{
-							console.log("el modo texto está activado pero no se han detectado textos")
+							console.warn("El modo texto está activado pero no se han encontrado textos")
 						}								
 						//imágenes
-					}else{
-						console.log("options: ",options.images[i-1])
+					}else{						
 						if(options.images && options.images[i-1] && options.images[i-1].length>0){
 
 							let testArray=this.testStringArray(options.images[i-1]);
 							
 							if(!testArray){
-								console.log("options.texts debe ser un array de tipo cadena");
+								console.warn("texts debe ser un array de tipo cadena");
 							}							
-							if(opEffects && opEffects[i].widthHTML)
+							if(opEffects && opEffects[i] && opEffects[i].widthHTML)
 								banner[i].widthHTML=opEffects[i].widthHTML;
 							conf.imagesBanner[i-1]=options.images[i-1];
 						}else{
 
-							console.log("no se han detectado imágenes, se establecen la imágenes de prueba")
+							console.info("No se han detectado imágenes, se establecerán la imágenes por defecto")
 						}
 					}
 				}
@@ -449,7 +448,7 @@ export default {
 				if(effects.modeText){					
 					bannerRef.style.fontSize=tmpFont;
 				}else{					
-					console.log("Para el efecto fontSize es necesario activar la opción modeText");
+					console.info("Propiedad fontSize requiere declarar la propiedad modeText como true");
 				}
 			}
 			else if(effects.trans.height){									
@@ -534,7 +533,7 @@ export default {
 					if(banner.modeText)
 						bannerRef.style.fontSize="0";
 					else
-						console.log("Para el efecto fontSize es necesario incluir modeText");
+						console.info("Propiedad fontSize requiere declara la propiedad modeText como true");
 				}
 
 		//mostrar
@@ -655,8 +654,7 @@ export default {
     font-size:null;
     letter-spacing: 1px;
     position:relative;
-    transition:all 0.6s linear;
-    font-family:nikaia;
+    transition:all 0.6s linear;    
 }
 .img_banner{
 	max-width:100%;
@@ -665,12 +663,7 @@ export default {
     position:relative;
     transition:all 0.6s linear;
 }
-.text1{
-    font-family:nikaia;
+.text1{    
     font-size:18px;
-}
-@font-face{
-	font-family:nikaia;
-	src:url(./assets/fonts/Nikaia_Medium.ttf);
 }
 </style>
