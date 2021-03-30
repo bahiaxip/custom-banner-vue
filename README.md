@@ -1,4 +1,5 @@
 # custom-banner-vue
+
 * Features:
 
   * Optional orientation
@@ -31,11 +32,32 @@
 * Images/Texts
   * Possibility of texts improving performance.
 
+* Installation
+```
+npm install custom-banner-vue
+```
+
+  * Import globally
+
+```
+import CustomBanner from 'custom-banner-vue'
+
+Vue.use(CustomBanner)
+```
+  * Import local
+  
+```
+import { CustomBanner } from 'custom-banner-vue'
+```
+
+
+* Configuration
+
 **Template**
 ```
 <template>
     <div>
-	<Banner :options="options"></Banner>
+	<custom-banner-vue :options="options"></custom-banner-vue>
     </div>
 </template>
 ```
@@ -49,7 +71,7 @@ data() {
       orientation:"vertical",
       images:[
         [
-	  "img/image1.jpg",
+	        "img/image1.jpg",
           "img/image2.jpg",
           "img/image3.jpg"
         ],
