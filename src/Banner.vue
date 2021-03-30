@@ -296,47 +296,52 @@ export default {
 				conf.fontSizeDefault=font;				
 			}
 		
-			if(options.images && options.images.length>0  || options.texts && options.texts.length>0){				
+			if(options.images && options.images.length>0  || options.texts && options.texts.length>0){
+
+				let opEffects;
 				if(options.effects){
-					let opEffects=options.effects;
-
-					for(let i=1;i<4;i++){					
-						if(opEffects[i]){
-							//textos
-							if(opEffects[i].modeText){
-								banner[i].modeText=true;							
-								if(options.texts && options.texts[i-1].length>0){									
-									let testArray=this.testStringArray(options.texts[i-1]);
-									if(!testArray){
-										console.log("options.texts debe ser un array de tipo cadena");
-									}
-
-									if(options.effects[i].fontSizeStyle){
-										let font=options.effects[i].fontSizeStyle;									
-										if(typeof(font)==="number"){	
-											font=font+"px";
-										}										
-										banner[i].fontSizeStyle=font;
-									}																		
-									conf.textsBanner[i-1]=options.texts[i-1];
-								}else{
-									console.log("el modo texto está activado pero no se han asignado los textos")
-								}								
-							//imágenes
-							}else{
-								if(options.images && options.images[i-1].length>0){
-									let testArray=this.testStringArray(options.images[i-1]);									
-									if(!testArray){
-										console.log("options.texts debe ser un array de tipo cadena");
-									}
-									
-									if(opEffects[i].widthHTML)
-										banner[i].widthHTML=opEffects[i].widthHTML;
-									conf.imagesBanner[i-1]=options.images[i-1];
-								}else{
-									console.log("no se han detectado imágenes, se establecen la imágenes de prueba")
-								}
+					opEffects=options.effects;
+				}
+				for(let i=1;i<4;i++){
+					if(opEffects && opEffects[i] && opEffects[i].modeText){							
+						//textos							
+						banner[i].modeText=true;
+						
+						if(options.texts && options.texts[i-1] && options.texts[i-1].length>0){
+							
+							let testArray=this.testStringArray(options.texts[i-1]);
+							if(!testArray){
+								console.log("options.texts debe ser un array de tipo cadena");
 							}
+					
+							if(options.effects[i].fontSizeStyle){
+								let font=options.effects[i].fontSizeStyle;								
+								if(typeof(font)==="number"){	
+									font=font+"px";
+								}										
+								banner[i].fontSizeStyle=font;
+							}									
+								//se asignan textos del elemento
+								conf.textsBanner[i-1]=options.texts[i-1];
+						}else{
+							console.log("el modo texto está activado pero no se han detectado textos")
+						}								
+						//imágenes
+					}else{
+						console.log("options: ",options.images[i-1])
+						if(options.images && options.images[i-1] && options.images[i-1].length>0){
+
+							let testArray=this.testStringArray(options.images[i-1]);
+							
+							if(!testArray){
+								console.log("options.texts debe ser un array de tipo cadena");
+							}							
+							if(opEffects && opEffects[i].widthHTML)
+								banner[i].widthHTML=opEffects[i].widthHTML;
+							conf.imagesBanner[i-1]=options.images[i-1];
+						}else{
+
+							console.log("no se han detectado imágenes, se establecen la imágenes de prueba")
 						}
 					}
 				}
@@ -502,7 +507,7 @@ export default {
 				bannerRef=ref.nodeRef[num];				
 				list=tmp[num].list;
 				if(type=="show"){				
-					if(tmp[num].index==0)
+					if(tmp[num].index==0 && list.length>1)
 						tmp[num].index=1;					
 					else if(list.length==tmp[num].index)
 						tmp[num].index=0;				
@@ -597,7 +602,7 @@ export default {
 }
 .bh_banner_vertical.min{
     width:150px;
-    min-height:500px;
+    min-height:450px;
 }
 .bh_banner_horizontal{
     display:inline-block;
@@ -607,7 +612,7 @@ export default {
     height:150px;
 }
 .bh_banner_horizontal.min{
-    min-width:650px;
+    min-width:550px;
     height:120px;    
 }
 .div_banner{

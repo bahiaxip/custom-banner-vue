@@ -1,5 +1,5 @@
 /*!
- * custom-banner-vue v0.0.93
+ * custom-banner-vue v0.0.968
  * (c) Xip
  * Released under the MIT License.
  */
@@ -708,11 +708,14 @@ var __vue_component__ = /*#__PURE__*/normalizeComponent({
 var index = {
   //const customBanner = {
   install: function install(Vue, options) {
+    //para otros casos revisar documentación:
+    //https://es.vuejs.org/v2/guide/plugins.html
+    //const { customOptions } = options;
     // Let's register our component globally
     // https://vuejs.org/v2/guide/components-registration.html
-    Vue.component("custom-banner", __vue_component__);
+    Vue.component("custom-banner-vue", __vue_component__);
   }
-}; //Automatic installation if Vue has been added to the global scope.
+}; //la siguiente condición  permite llamar al método de instalación automáticamente,
 
-exports.Banner = __vue_component__;
+exports.CustomBannerVue = __vue_component__;
 exports.default = index;

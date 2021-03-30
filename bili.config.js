@@ -4,7 +4,7 @@ module.exports={
 	banner:true,
 	output:{
 		extractCSS:false,
-		libraryExport:'default'
+		//libraryExport:'default'
 	},
 	plugins:{
 		vue:{
