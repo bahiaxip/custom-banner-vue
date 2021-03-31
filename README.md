@@ -160,10 +160,10 @@ options:{
       width:true,
     },
     2:{
-      positionTop:true
+      top:true
     },
     3:{
-      scaleRotate:true
+      rotate:true
     }
   },
   order:{
@@ -215,7 +215,7 @@ options:{
       modeText:true
     },
     2:{
-      positionLeft:true	    
+      left:true	    
     },
     3:{
       opacity:true
@@ -238,7 +238,7 @@ effects:{
     widthHTML:120,
   },
   2:{
-    positionLeft:true
+    left:true
     modeText:true,
   },
   3:{
@@ -258,7 +258,7 @@ effects:{
     width:true,
   },
   2:{
-    positionLeft:true
+    left:true
     modeText:true,
     fontSizeStyle:"20px",
   },

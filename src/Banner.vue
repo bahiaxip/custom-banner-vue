@@ -87,9 +87,9 @@ export default {
 						width:false,
 						height:false,						
 						fontSize:false,
-						positionLeft:false,
-						positionTop:false,						
-						scaleRotate:true,			
+						left:false,
+						top:false,						
+						rotate:true,			
 					},					
 					fontSizeStyle:null,
 					modeText:false,
@@ -102,9 +102,9 @@ export default {
 						width:false,
 						height:false,						
 						fontSize:false,
-						positionLeft:false,
-						positionTop:true,						
-						scaleRotate:false,
+						left:false,
+						top:true,						
+						rotate:false,
 					},					
 					fontSizeStyle:null,
 					modeText:false,
@@ -117,9 +117,9 @@ export default {
 						width:false,
 						height:false,						
 						fontSize:false,
-						positionLeft:false,
-						positionTop:false,						
-						scaleRotate:false,
+						left:false,
+						top:false,						
+						rotate:false,
 					},					
 					fontSizeStyle:null,
 					modeText:false,
@@ -220,7 +220,7 @@ export default {
 	},
 	methods:{		
 		testAndSetEffect(option,effects){
-			let effectsList=["width","height","positionLeft","positionTop","scaleRotate"];
+			let effectsList=["width","height","left","top","rotate"];
 			if(option.modeText)
 				effectsList.push("fontSize");	
 
@@ -379,9 +379,9 @@ export default {
 		setTransToFalse(bannerTrans){
 			bannerTrans.width=false;
 			bannerTrans.height=false;
-			bannerTrans.positionLeft=false;
-			bannerTrans.positionTop=false;		
-			bannerTrans.scaleRotate=false;
+			bannerTrans.left=false;
+			bannerTrans.top=false;		
+			bannerTrans.rotate=false;
 		},		
 		setTransFromOptions(transType){
 			if(transType && transType===true)
@@ -437,7 +437,7 @@ export default {
 			tmp.fontSize=tmpFont;
 			bannerRef.style.fontSize=tmpFont;
 			
-			if(effects.trans.positionLeft)				
+			if(effects.trans.left)				
 				bannerRef.style.left="0px";			
 			else if(effects.trans.width){
 				if(bannerRef.width)
@@ -454,7 +454,7 @@ export default {
 			else if(effects.trans.height){									
 				bannerRef.style.height=bannerRef.parentNode.clientHeight+"px";
 			}			
-			else if(effects.trans.positionTop)
+			else if(effects.trans.top)
 				bannerRef.style.top="0px";
 		},
 
@@ -522,12 +522,12 @@ export default {
 					bannerRef.style.transform="scale(0,1)";
 				else if(banner.trans.height){					
 					bannerRef.style.transform="scale(1,0)";
-				}else if(banner.trans.positionTop)					
+				}else if(banner.trans.top)					
 					bannerRef.style.top="-150px";
-				else if(banner.trans.positionLeft){					
+				else if(banner.trans.left){					
 					bannerRef.style.left="-300px";					
 				}
-				else if(banner.trans.scaleRotate)
+				else if(banner.trans.rotate)
 					bannerRef.style.transform="scale(0) rotate(360deg)";
 				else if(banner.trans.fontSize){
 					if(banner.modeText)
@@ -546,11 +546,11 @@ export default {
 				else if(banner.trans.height){					
 					bannerRef.style.transform="scale(1,1)";
 				}
-				else if(banner.trans.positionTop)
+				else if(banner.trans.top)
 					bannerRef.style.top="0px";
-				else if(banner.trans.positionLeft)
+				else if(banner.trans.left)
 					bannerRef.style.left="0px";				
-				else if(banner.trans.scaleRotate)
+				else if(banner.trans.rotate)
 					bannerRef.style.transform="scale(1) rotate(0deg)"
 				else if(banner.trans.fontSize){
 					if(banner.modeText){
