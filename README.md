@@ -1,13 +1,13 @@
 # custom-banner-vue
 
-* Features:
+**Features:**
 
   * Optional orientation
-  * Optiona size
-  * Elements order customizable
-  * Transition configuration of every element.
-  * Configuration time.
-  * Possibility images or texts
+  * Optional size
+  * Customizable Elements order 
+  * Transition's configuration of every element.
+  * Time settings.
+  * Optional images or texts
 
 * Orientation
   * Two options for orientation: horizontal or vertical
@@ -18,7 +18,7 @@
   * Medium is the option by default.
 
 * Order
-  * The order or sequence allows handling which element will perform animations and possiblity of add.
+  * The order or sequence allows handling which element will perform animations and possiblity of add new animations.
 
 * Transitions
   * Six differents transitions: 
@@ -42,12 +42,12 @@ npm install custom-banner-vue
 ```
 import CustomBanner from 'custom-banner-vue'
 
-Vue.use(CustomBanner)
+Vue.use(CustomBannerVue)
 ```
-  * Import local
+  * Import locally
   
 ```
-import { CustomBanner } from 'custom-banner-vue'
+import { CustomBannerVue } from 'custom-banner-vue'
 ```
 
 
@@ -68,20 +68,23 @@ import { CustomBanner } from 'custom-banner-vue'
 data() {
   return {
     options:{
-      orientation:"vertical",
+      orientation:"horizontal",
       images:[
+      //folder public
         [
 	        "img/image1.jpg",
           "img/image2.jpg",
           "img/image3.jpg"
         ],
+      //folder assets  
         [
-          "img/image1.png",
-          "img/image2.png",
-          "img/image3.png"
+          require("@/assets/img/image1.jpg"),
+          require("@/assets/img/image2.jpg"),
+          require("@/assets/img/image3.png")
         ],
+      //absolute path
         [
-	  "http://www.server/image1.jpg",
+	        "http://www.server/image1.jpg",
           "http://www.server/image2.jpg",
           "http://www.server/image3.jpg"
         ]
@@ -136,12 +139,12 @@ options:{
   size:"min",
     images:[
       [
-	"img/image1.jpg",
+	      "img/image1.jpg",
         "img/image2.jpg",
         "img/image3.jpg"
       ],
       [
-	"img/image1.png",
+        "img/image1.png",
         "img/image2.png",
         "img/image3.png"
       ],
@@ -188,8 +191,8 @@ options:{
     ],
     [
       "img/image1.png",
-       "img/image2.png",
-       "img/image3.png"
+      "img/image2.png",
+      "img/image3.png"
     ],
     [
       "http://www.server/image1.jpg",
@@ -198,8 +201,12 @@ options:{
     ]
   ],
   texts:[
-    "Welcome to mydomain.com",
-    "browse the different sections"	    
+    [
+      "Welcome to mydomain.com",
+      "browse the different sections"     
+    ],
+    [],
+    []    
   ],
   effects:{
     1:{
@@ -221,7 +228,7 @@ options:{
 **Other options**
 
   * widthHTML
-    * Property widthHTML allows assign attribute width of image can be useful some times for to reduce the image.
+    * Property widthHTML allows assign attribute width of image can be useful some times for to reduce the image or keep dimensions for width effect.
 ```
 ...
 effects:{
@@ -242,7 +249,7 @@ effects:{
 ```
   * fontSizeStyle
     * Property fontSizeStyle allows assign one different size of font for every element. The text's option set the size
-of first text of the list, so handling fontSizeStyle can be really useful.
+of first text of the list by default, so handling fontSizeStyle can be really useful.
 ```
 ...
 effects:{
