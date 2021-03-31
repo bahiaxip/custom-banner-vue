@@ -1,13 +1,13 @@
 # custom-banner-vue
 
-**Features:**
+## Features:
 
-  * Optional orientation
-  * Optional size
-  * Customizable Elements order 
-  * Transition's configuration of every element.
-  * Time settings.
-  * Optional images or texts
+* Optional orientation
+* Optional size
+* Customizable Elements order 
+* Transition's configuration of every element.
+* Time settings.
+* Optional images or texts
 
 * Orientation
   * Two options for orientation: horizontal or vertical
@@ -32,21 +32,21 @@
 * Images/Texts
   * Possibility of texts improving performance.
 
-* Installation
-```
+## Install
+```console
 npm install custom-banner-vue
 ```
 
-  * Import globally
+## Import globally
 
-```
+```console
 import CustomBanner from 'custom-banner-vue'
 
 Vue.use(CustomBannerVue)
 ```
-  * Import locally
+## Import locally
   
-```
+```console
 import { CustomBannerVue } from 'custom-banner-vue'
 ```
 
@@ -54,7 +54,7 @@ import { CustomBannerVue } from 'custom-banner-vue'
 * Configuration
 
 **Template**
-```
+```javascript
 <template>
     <div>
 	<custom-banner-vue :options="options"></custom-banner-vue>
@@ -63,7 +63,7 @@ import { CustomBannerVue } from 'custom-banner-vue'
 ```
 
 **Basic**
-```
+```javascript
 ...
 data() {
   return {
@@ -96,7 +96,7 @@ data() {
 ```
 
 **Basic (texts)**
-```
+```javascript
 ...
 options:{
   orientation:"vertical",
@@ -122,7 +122,7 @@ options:{
     },
     2:{
       modeText:true
-    }
+    },
     3:{
       modeText:true
     }
@@ -132,7 +132,7 @@ options:{
 ```
 
 **Order && Effects**
-```
+```javascript
 ...
 options:{
   orientation:"vertical",
@@ -179,7 +179,7 @@ options:{
 ```
 
 **Images and texts**
-```
+```javascript
 options:{
   orientation:"vertical",
   size:"min",
@@ -229,7 +229,7 @@ options:{
 
   * widthHTML
     * Property widthHTML allows assign attribute width of image can be useful some times for to reduce the image or keep dimensions for width effect.
-```
+```javascript
 ...
 effects:{
   1:{
@@ -250,7 +250,7 @@ effects:{
   * fontSizeStyle
     * Property fontSizeStyle allows assign one different size of font for every element. The text's option set the size
 of first text of the list by default, so handling fontSizeStyle can be really useful.
-```
+```javascript
 ...
 effects:{
   1:{
@@ -268,3 +268,5 @@ effects:{
 }
 ...
 ```
+## License
+custom-banner-vue is released under MIT license
