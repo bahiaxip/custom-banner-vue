@@ -72,7 +72,7 @@ data() {
       images:[
       //folder public
         [
-	        "img/image1.jpg",
+          "img/image1.jpg",
           "img/image2.jpg",
           "img/image3.jpg"
         ],
@@ -84,7 +84,7 @@ data() {
         ],
       //absolute path
         [
-	        "http://www.server/image1.jpg",
+          "http://www.server/image1.jpg",
           "http://www.server/image2.jpg",
           "http://www.server/image3.jpg"
         ]
@@ -139,7 +139,7 @@ options:{
   size:"min",
     images:[
       [
-	      "img/image1.jpg",
+        "img/image1.jpg",
         "img/image2.jpg",
         "img/image3.jpg"
       ],
@@ -160,10 +160,10 @@ options:{
       width:true,
     },
     2:{
-      positionTop:true
+      top:true
     },
     3:{
-      scaleRotate:true
+      rotate:true
     }
   },
   order:{
@@ -184,7 +184,7 @@ options:{
   orientation:"vertical",
   size:"min",
   images:[
-    [
+    [    
       "img/image1.jpg",
       "img/image2.jpg",
       "img/image3.jpg"
@@ -215,7 +215,7 @@ options:{
       modeText:true
     },
     2:{
-      positionLeft:true	    
+      left:true	    
     },
     3:{
       opacity:true
@@ -238,7 +238,7 @@ effects:{
     widthHTML:120,
   },
   2:{
-    positionLeft:true
+    left:true
     modeText:true,
   },
   3:{
@@ -258,7 +258,7 @@ effects:{
     width:true,
   },
   2:{
-    positionLeft:true
+    left:true
     modeText:true,
     fontSizeStyle:"20px",
   },

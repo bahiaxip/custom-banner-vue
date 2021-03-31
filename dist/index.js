@@ -1,5 +1,5 @@
 /*!
- * custom-banner-vue v0.0.971
+ * custom-banner-vue v0.1.1
  * (c) Xip
  * Released under the MIT License.
  */
@@ -62,9 +62,9 @@ var script = {
             width: false,
             height: false,
             fontSize: false,
-            positionLeft: false,
-            positionTop: false,
-            scaleRotate: true
+            left: false,
+            top: false,
+            rotate: true
           },
           fontSizeStyle: null,
           modeText: false,
@@ -77,9 +77,9 @@ var script = {
             width: false,
             height: false,
             fontSize: false,
-            positionLeft: false,
-            positionTop: true,
-            scaleRotate: false
+            left: false,
+            top: true,
+            rotate: false
           },
           fontSizeStyle: null,
           modeText: false,
@@ -92,9 +92,9 @@ var script = {
             width: false,
             height: false,
             fontSize: false,
-            positionLeft: false,
-            positionTop: false,
-            scaleRotate: false
+            left: false,
+            top: false,
+            rotate: false
           },
           fontSizeStyle: null,
           modeText: false,
@@ -180,7 +180,7 @@ var script = {
   },
   methods: {
     testAndSetEffect: function testAndSetEffect(option, effects) {
-      var effectsList = ["width", "height", "positionLeft", "positionTop", "scaleRotate"];
+      var effectsList = ["width", "height", "left", "top", "rotate"];
       if (option.modeText) effectsList.push("fontSize");
 
       for (var i = 0; i < effectsList.length; i++) {
@@ -221,7 +221,7 @@ var script = {
             });
 
             if (!resultOrders) {
-              console.log("la configuración en order no es correcta");
+              console.warn("La configuración en order no es correcta");
               break;
             }
 
@@ -235,7 +235,7 @@ var script = {
     testOrientationAndNodes: function testOrientationAndNodes(options, conf, banner) {
       if (options.orientation) {
         if (options.orientation !== "vertical" && options.orientation !== "horizontal") {
-          console.log("Error options.orientation: Solamente puede ser horizontal o vertical");
+          console.warn("Error orientation: horizontal o vertical");
           return;
         }
 
@@ -268,7 +268,7 @@ var script = {
               var testArray = this.testStringArray(options.texts[i - 1]);
 
               if (!testArray) {
-                console.log("options.texts debe ser un array de tipo cadena");
+                console.warn("texts debe ser un array de tipo cadena");
               }
 
               if (options.effects[i].fontSizeStyle) {
@@ -284,7 +284,7 @@ var script = {
 
               conf.textsBanner[i - 1] = options.texts[i - 1];
             } else {
-              console.log("el modo texto está activado pero no se han detectado textos");
+              console.warn("El modo texto está activado pero no se han encontrado textos");
             } //imágenes
 
           } else {
@@ -292,13 +292,13 @@ var script = {
               var _testArray = this.testStringArray(options.images[i - 1]);
 
               if (!_testArray) {
-                console.log("options.texts debe ser un array de tipo cadena");
+                console.warn("texts debe ser un array de tipo cadena");
               }
 
               if (opEffects && opEffects[i] && opEffects[i].widthHTML) banner[i].widthHTML = opEffects[i].widthHTML;
               conf.imagesBanner[i - 1] = options.images[i - 1];
             } else {
-              console.log("no se han detectado imágenes, se establecen la imágenes de prueba");
+              console.info("No se han detectado imágenes, se establecerán la imágenes por defecto");
             }
           }
         }
@@ -339,9 +339,9 @@ var script = {
     setTransToFalse: function setTransToFalse(bannerTrans) {
       bannerTrans.width = false;
       bannerTrans.height = false;
-      bannerTrans.positionLeft = false;
-      bannerTrans.positionTop = false;
-      bannerTrans.scaleRotate = false;
+      bannerTrans.left = false;
+      bannerTrans.top = false;
+      bannerTrans.rotate = false;
     },
     setTransFromOptions: function setTransFromOptions(transType) {
       if (transType && transType === true) return true;else if (transType === false) return false;else return;
@@ -375,17 +375,17 @@ var script = {
       if (effects.fontSizeStyle) tmpFont = effects.fontSizeStyle;else if (bannerRef.style.fontSize) tmpFont = bannerRef.style.fontSize;else if (fontSizeCSS) tmpFont = fontSizeCSS;else tmpFont = conf.fontSizeDefault;
       tmp.fontSize = tmpFont;
       bannerRef.style.fontSize = tmpFont;
-      if (effects.trans.positionLeft) bannerRef.style.left = "0px";else if (effects.trans.width) {
+      if (effects.trans.left) bannerRef.style.left = "0px";else if (effects.trans.width) {
         if (bannerRef.width) bannerRef.style.width = bannerRef.width + 'px';else bannerRef.style.width = "100%";
       } else if (effects.trans.fontSize) {
         if (effects.modeText) {
           bannerRef.style.fontSize = tmpFont;
         } else {
-          console.log("Para el efecto fontSize es necesario activar la opción modeText");
+          console.info("Propiedad fontSize requiere declarar la propiedad modeText como true");
         }
       } else if (effects.trans.height) {
         bannerRef.style.height = bannerRef.parentNode.clientHeight + "px";
-      } else if (effects.trans.positionTop) bannerRef.style.top = "0px";
+      } else if (effects.trans.top) bannerRef.style.top = "0px";
     },
     interval_animationbanner: function interval_animationbanner(tmp, main, ref, bannerConf) {
       var _this = this;
@@ -449,10 +449,10 @@ var script = {
         if (banner.opacity) bannerRef.style.opacity = "0";
         if (banner.trans.width) bannerRef.style.transform = "scale(0,1)";else if (banner.trans.height) {
           bannerRef.style.transform = "scale(1,0)";
-        } else if (banner.trans.positionTop) bannerRef.style.top = "-150px";else if (banner.trans.positionLeft) {
+        } else if (banner.trans.top) bannerRef.style.top = "-150px";else if (banner.trans.left) {
           bannerRef.style.left = "-300px";
-        } else if (banner.trans.scaleRotate) bannerRef.style.transform = "scale(0) rotate(360deg)";else if (banner.trans.fontSize) {
-          if (banner.modeText) bannerRef.style.fontSize = "0";else console.log("Para el efecto fontSize es necesario incluir modeText");
+        } else if (banner.trans.rotate) bannerRef.style.transform = "scale(0) rotate(360deg)";else if (banner.trans.fontSize) {
+          if (banner.modeText) bannerRef.style.fontSize = "0";else console.info("Propiedad fontSize requiere declara la propiedad modeText como true");
         } //mostrar
       } else if (type == "show") {
         if (banner.opacity) bannerRef.style.opacity = "1";
@@ -461,7 +461,7 @@ var script = {
           bannerRef.style.transform = "scale(1,1)";
         } else if (banner.trans.height) {
           bannerRef.style.transform = "scale(1,1)";
-        } else if (banner.trans.positionTop) bannerRef.style.top = "0px";else if (banner.trans.positionLeft) bannerRef.style.left = "0px";else if (banner.trans.scaleRotate) bannerRef.style.transform = "scale(1) rotate(0deg)";else if (banner.trans.fontSize) {
+        } else if (banner.trans.top) bannerRef.style.top = "0px";else if (banner.trans.left) bannerRef.style.left = "0px";else if (banner.trans.rotate) bannerRef.style.transform = "scale(1) rotate(0deg)";else if (banner.trans.fontSize) {
           if (banner.modeText) {
             bannerRef.style.fontSize = tmp[num].fontSize;
           }
@@ -679,7 +679,7 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-06f5ad69_0", {
+  inject("data-v-e07e7d4e_0", {
     source: ".bh_banner{margin:10px auto;border-radius:20px;background-color:rgba(0,0,0,.8);color:#fff;padding:10px;position:relative;z-index:10;text-align:center;box-sizing:border-box}.bh_banner_vertical.medium{width:200px;min-height:550px}.bh_banner_vertical.min{width:150px;min-height:450px}.bh_banner_horizontal{display:inline-block}.bh_banner_horizontal.medium{min-width:800px;height:150px}.bh_banner_horizontal.min{min-width:550px;height:120px}.div_banner{overflow:hidden}.bh_banner_horizontal .div_banner{align-items:center!important;vertical-align:middle;display:inline-flex;margin:auto 10px}.bh_banner_horizontal .div_banner.medium{min-width:230px;height:130px}.bh_banner_horizontal .div_banner.min{min-width:150px;height:100px}.bh_banner_vertical .div_banner.medium{min-height:180px}.bh_banner_vertical .div_banner.min{min-height:130px}.bh_banner_vertical .div_banner{align-items:center!important;vertical-align:middle;display:inline-flex}.bh_banner_horizontal .text_banner{line-height:30px;margin:10px auto}.bh_banner_vertical .text_banner{line-height:40px}.text_banner{color:#fff;font-size:null;letter-spacing:1px;position:relative;transition:all .6s linear}.img_banner{max-width:100%;max-height:100%;margin:auto;position:relative;transition:all .6s linear}.text1{font-size:18px}",
     map: undefined,
     media: undefined
