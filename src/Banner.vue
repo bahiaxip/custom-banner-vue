@@ -32,7 +32,7 @@ export default {
 				orientation:"horizontal",				
 				fontSizeDefault:"16px",
 				size:null,
-				display:null,
+				display:"flex",
 				time:null,
 				order:{
 		
@@ -200,7 +200,7 @@ export default {
 			}
 
 		let main=this.setDataMain(this.options);	
-	
+		console.log("main: es: ",this.bhBannerConf)
 		this.mainString=main;
 		this.main={};
 		this.main[main.confString]=this.bhBannerConf;
@@ -294,8 +294,9 @@ export default {
 			//establecemos tiemop de intervalo de imágenes global
 			conf.time=time;
 			//si se ha establecido el valor de responsive en true establecemos la opción a "flex"
-			if(options.responsive)
-				conf.display = 'flex';
+			conf.display = (options.responsive) ?  'flex':'';
+				
+
 		},
 		testOrientationAndNodes(options,conf,banner){		
 			if(options.orientation){				
@@ -444,7 +445,7 @@ export default {
 			if(conf.size){
 				//
 			}
-		
+			console.log("firsttime: ",conf)
 			let tmpFont;
 			let fontSizeCSS=window.getComputedStyle(bannerRef,null).getPropertyValue("font-size");
 			if(effects.fontSizeStyle)
@@ -478,6 +479,7 @@ export default {
 			}			
 			else if(effects.trans.top)
 				bannerRef.style.top="0px";
+
 		},
 
 		interval_animationbanner(tmp,main,ref,bannerConf){
