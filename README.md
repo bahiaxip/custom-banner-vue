@@ -69,6 +69,7 @@ data() {
   return {
     options:{
       orientation:"horizontal",
+      time:5000,
       images:[
       //folder public
         [

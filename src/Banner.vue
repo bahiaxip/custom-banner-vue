@@ -3,6 +3,8 @@
 			main[mainString.confString].orientation=='vertical' ? 'bh_banner_vertical':'bh_banner_horizontal'
 			,
 				main[mainString.confString].size=='min' ? 'min':'medium'
+				,
+				main[mainString.confString].display=='flex' ? 'flex':''
 			]">
 		<div :ref="main[mainString.refString].parentsDivsString[0]" class="div_banner" :class="main[mainString.confString].size=='min' ? 'min':'medium'" >
 			<img :src="main[mainString.tmpString][1].selected" :width="main[mainString.bannerString][1].widthHTML"  :ref="main[mainString.refString].refsString[0]" class="img_banner" v-if="!main[mainString.bannerString][1].modeText"/>
@@ -30,6 +32,8 @@ export default {
 				orientation:"horizontal",				
 				fontSizeDefault:"16px",
 				size:null,
+				display:null,
+				time:null,
 				order:{
 		
 					0:[1],
@@ -185,6 +189,7 @@ export default {
 			},
 			main:null,			
 			mainString:null,
+			
 		}
 	},
 	created(){		
@@ -204,9 +209,11 @@ export default {
 		this.main[main.tmpString]=this.tmpBhBanner;
 		
 		if(this.options){
+			this.testAndSetTimeAndResponsive(this.options,this.main[main.confString]);
 			this.testOrientationAndNodes(this.options,this.main[main.confString],this.main[main.bannerString]);			
 			this.setOrderAnimations(this.options,this.main[main.confString]);
 			this.setEffects(this.options,this.main[main.bannerString]);
+			
 		}		
 	},
 
@@ -274,7 +281,21 @@ export default {
 					conf.order=order;		
 			}
 		},
-		
+		testAndSetTimeAndResponsive(options,conf){
+			//tiempo por defecto
+			let time = 4000;
+			//si se ha establecido la opción de tiempo asignamos comprobando que sea entero
+			if(options.time && !isNaN(options.time) == true)
+				time=options.time * 1000;
+			else
+				//si no es entero mostramos warning en consola
+				console.warn("El valor de tiempo no es un valor numérico")
+			//establecemos tiemop de intervalo de imágenes global
+			conf.time=time;
+			//si se ha establecido el valor de responsive en true establecemos la opción a "flex"
+			if(options.responsive)
+				conf.display = 'flex';
+		},
 		testOrientationAndNodes(options,conf,banner){		
 			if(options.orientation){				
 				if(options.orientation !=="vertical" && options.orientation !=="horizontal"){
@@ -483,7 +504,7 @@ export default {
 					this.showAnimation(list,tmp,bannerConf,ref);
 				},time2)
 				tmp.counter++;
-			},4000)
+			},this.time)
 		},
 		
 		hideAnimation(list,tmp,bannerConf,ref){		
@@ -610,9 +631,24 @@ export default {
     min-width:800px;        
     height:150px;
 }
+/*responsive: true*/
+.bh_banner_horizontal.medium.flex{
+	justify-content:space-around;
+	display:flex;
+	min-width:unset;
+	max-width:800px;
+	width:100%;
+}
 .bh_banner_horizontal.min{
     min-width:550px;
     height:120px;    
+}
+/*responsive: true*/
+.bh_banner_horizontal.min.flex{
+    justify-content:space-around;
+	display:flex;
+	max-width:550px;
+	width:100%;
 }
 .div_banner{
     overflow:hidden;    
@@ -627,6 +663,11 @@ export default {
     min-width:230px;
     height:130px;
 }
+.bh_banner_horizontal.medium.flex .div_banner.medium,
+.bh_banner_horizontal.medium.flex .div_banner.min{
+	min-width:80px;
+	width:100% !important;
+} 
 .bh_banner_horizontal .div_banner.min{
     min-width:150px;
     height:100px;

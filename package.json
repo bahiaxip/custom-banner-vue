@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "custom-banner-vue",
-  "version": "0.1.2",
+  "version": "0.1.32",
   "description": "Easy customizable banner for Vue",
   "author": "Xip",
   "license": "MIT",
