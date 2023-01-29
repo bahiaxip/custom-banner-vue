@@ -282,6 +282,7 @@ export default {
 			}
 		},
 		testAndSetTimeAndResponsive(options,conf){
+			console.log(options);
 			//tiempo por defecto
 			let time = 4000;
 			//si se ha establecido la opción de tiempo asignamos comprobando que sea entero
@@ -484,6 +485,12 @@ export default {
 			tmp.listOrder=Object.keys(main.order);
 			if(tmp.listOrder.length<=0)
 				return;
+			//establecemos valor 4000 por defecto, en caso de no asignar opciones
+			let intervalTime = 4000;
+			console.log("main_time: ",this.bhBannerConf)
+			if(main.time){
+				intervalTime = main.time;
+			}
 			ref.interval=setInterval(()=>{				
 				if(tmp.counter==tmp.listOrder.length)	{
 					tmp.counter=0;
@@ -504,7 +511,7 @@ export default {
 					this.showAnimation(list,tmp,bannerConf,ref);
 				},time2)
 				tmp.counter++;
-			},this.time)
+			},intervalTime)
 		},
 		
 		hideAnimation(list,tmp,bannerConf,ref){		
